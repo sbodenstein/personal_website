@@ -28,7 +28,7 @@ image:
 #   icon: twitter
 
 url_code: "https://github.com/sbodenstein/penrose_solutions"
-url_pdf: "pdf/PenroseSolutions.pdf"
+url_pdf: "pdf/penrose_solutions.pdf"
 url_slides: ""
 url_video: ""
 
