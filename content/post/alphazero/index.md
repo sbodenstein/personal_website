@@ -270,7 +270,7 @@ optimization with regret bounds](http://people.csail.mit.edu/beomjoon/publicatio
 
 Some prominent researchers, such as Yoshua Bengio, [believe that one of the key problems with current deep learning methods](https://www.youtube.com/watch?v=UX8OubxsY8w&feature=emb_logo) is that they are stuck at being **System 1** processes: neural nets take one glance at some input, and immediately return a reaction. They typically can't make use of more computation to *reason* and *plan*, which Bengio believes to be the key to solving one of the greatest limitations of current systems: out-of-distribution generalization.
 
-It is notable that AlphaZero derives its success from using both **System 1** (neural net) and **System 2** (MCTS) processes, and it leverages this interplay in two very different ways. And this interplay is very similar to human cognition. First, as a way of learning:
+It is notable that AlphaZero derives its success from using both **System 1** (neural net) and **System 2** (MCTS) processes, and it leverages this interplay in two very different ways. First, as a way of learning:
 
 > When learning to complete a challenging planning task, such as playing a board game, humans exploit both processes: strong intuitions allow for more effective analytic reasoning by rapidly selecting interesting lines of play for consideration. Repeated deep study gradually improves intuitions. Stronger intuitions feedback to stronger analysis, creating a closed learning loop. In other words, humans learn by *thinking fast and slow*. ~ T. Anthony *et al*, [Thinking Fast and Slow
 with Deep Learning and Tree Search](https://arxiv.org/pdf/1705.08439.pdf), **2017**
