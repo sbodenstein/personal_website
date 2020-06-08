@@ -38,9 +38,9 @@ I [implemented AlphaZero](https://github.com/deepmind/open_spiel/pull/134) for t
 
 ## The Problem
 
-The AlphaZero algorithm learns to play two-player [perfect information](https://en.wikipedia.org/wiki/Perfect_information) games like Chess, Go or Tic-Tac-Toe. Before jumping straight into how AlphaZero learns to play these games, it is important to understand why they are so hard.
+The AlphaZero algorithm learns to play two-player zero-sum [perfect information](https://en.wikipedia.org/wiki/Perfect_information) games like Chess, Go or Tic-Tac-Toe. Before jumping straight into how AlphaZero learns to play these games, it is important to understand why they are so hard.
 
-To make this discussion more concrete, I will use Python game implementations from [DeepMind OpenSpiel](https://github.com/deepmind/open_spiel). As an example for using OpenSpiel, let us try answer a highly non-trivial question about chess: if both players take random moves, what proportion of games are drawn?
+To make this discussion more concrete, I will use Python game implementations from [DeepMind OpenSpiel](https://github.com/deepmind/open_spiel). Games can have a result of either a win, draw or loss, represented as $z=\\{1,0,-1\\}$. If the game result is $z$ for player 1, then it is $-z$ for player 2, a simple property of the games being zero-sum. As an example for using OpenSpiel, let us try answer a highly non-trivial question about chess: if both players take random moves, what proportion of games are drawn?
 
 ```python
 import random
