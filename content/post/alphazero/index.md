@@ -281,7 +281,7 @@ It turns out that **System 1** is by far the most important of the two processes
 
 > Data from chess experiments show that a chess master might examine 100 branches of the game tree in 15 minutes, an average rate of about $9s$ per branch. De Groot (1946/1978) found that stronger and weaker players examine nearly the same number of branches, but that stronger players select more relevant and important branches... The simultaneous player with only $30s$, say, for a move will have little time for extensive look-ahead search at $9s$ per branch, and will have to depend primarily on recognition of cues to select the right moves.
 
-How much did Kasparovs playing strength decline? It dropped by only Elo 100 points!
+How much did Kasparovs playing strength decline? It dropped by only Elo 100 points, from 2750 to 2650!
 
 > An Elo rating of 2650 is very high, even among grand masters, only a half dozen players in the world equal or exceed that level
 
