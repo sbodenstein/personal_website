@@ -246,7 +246,7 @@ DeepMind also has a number of other algorithms under its *Alpha* brand that don'
 
 It is useful to know some of the limitations and restrictions that remain after MuZero, both when considering whether this set of methods can be applied to some problem (AlphaZero has already been applied to problems in [quantum computing](https://www.nature.com/articles/s41534-019-0241-0) and [chemical synthesis](https://www.nature.com/articles/nature25978)), and to give inspiration for future research. Here are some limitations:
 
-1. **Perfect Information**. Almost every real-world environment is *partially-observed*.
+1. **Perfect Information**. Planning 
 
 2. **Exploration with a Learnt Model**: Environments such as the notorious [Montezumas Revenge](https://openai.com/blog/learning-montezumas-revenge-from-a-single-demonstration/) have extremely sparse rewards: you can almost never get a reward with random play. This is fatal for MuZero, which relies on rewards to build a model of the environment (see [Table S1 of the MuZero paper](https://arxiv.org/pdf/1911.08265.pdf)).
 
@@ -308,7 +308,7 @@ Orchestrating this efficiently with only the process-level parallelism available
 
 Second, Python is orders of magnitude slower than C++. Even [simple argument parsing can take microseconds](https://youtu.be/DBVLcgq2Eg0?t=1314), which can be comparable to the time taken to evaluate a neural net on some accelerator. Unlike training a convnet, significant Python application logic is required for doing MCTS: its hard to optimize this without simply reimplementing everything in C++. 
 
-Given Pythons slowness, C++ is used to implement all of the games in OpenSpiel, as this is performance-critical. But even then, the overhead of Python and shuttling data between language boundaries can be significant: playing random games of tic-tac-toe is around 3x slower using Python and C++ than using pure Swift, and Kuhn Poker is around 10x faster.[^swift] Profilers and debuggers typically cannot see across language boundaries, making it hard to optimize and debug the entire program.
+Given Pythons slowness, C++ is used to implement all of the games in OpenSpiel, as this is performance-critical. But even then, the overhead of Python and shuttling data between language boundaries can be significant: playing random games of tic-tac-toe is around 3x slower using Python and C++ than using pure Swift, and Kuhn Poker is around 10x slower.[^swift] Profilers and debuggers typically cannot see across language boundaries, making it hard to optimize and debug the entire program.
 
 This has the following practical consequence: for OpenSpiel, there are now [two separate implementations of AlphaZero](https://github.com/deepmind/open_spiel/blob/c2683ca03d85e39d867594ef7f3c7f9319f18673/docs/alpha_zero.md), an easy to understand one in Python that can only be trained on toy problems, and a scalable multi-threaded one purely in C++. The [very mission of OpenSpiel](https://github.com/deepmind/open_spiel/blob/master/docs/contributing.md) is sabotaged by the deficiencies of Python:
 
