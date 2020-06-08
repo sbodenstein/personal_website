@@ -59,14 +59,10 @@ res = [random_move_game(game) for _ in range(num_trials)]
 print("Drawn games (%): ", 100 * res.count(0.0) / num_trials)
 # Output: Drawn games (%):  84.738
 ```
-
+So around $84.7\\%$ of games are drawn.
 ### Minimax
 
-Rather than taking a random move, what is the best move? A very simple simple algorithm exists that is guaranteed to give us the best move for a game in a state $s$: the [minimax algorithm](https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves). The idea is to take an action to minimize the  for the The minimax algorithm requires traversing the entire [game tree](https://en.wikipedia.org/wiki/Game_tree), which will turn out to be problematic.
-
-{{< figure library="true" src="images/game_tree.png" numbered="true" title="\"A (partial) game tree for the game of tic-tac-toe. The top node is the initial state, and MAX moves first, placing an X in an empty square. We show part of the tree, giving alternating moves by MIN (O) and MAX (X), until we eventually reach terminal states, which can be assigned utilities (or game outcomes/rewards) according to the rules of the game\" ~ Taken from: [Artificial Intelligence: A Modern Approach](http://aima.cs.berkeley.edu/))" lightbox="true" >}}
-
-We can implement the minimax algorithm in a few lines of Python:
+Rather than taking a random move, what is the best move? And what game result $z$ would we get if both players took the best moves? A very simple simple algorithm exists that answers both of these questions: the [minimax algorithm](https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves). First, the expected game result for a given state is called the **value** $v$. The idea of the minimax algorithm is to always choose an action that minimizes the maximum value the other player can obtain. We can implement this as a recursive algorithm in a few lines of Python:
 ```python
 def minimax(state, max_player_id = None):
     if max_player_id == None:
@@ -114,6 +110,9 @@ minimax(state)
 # Output: unknown!
 ```
 But it is still an [unsolved problem](https://en.wikipedia.org/wiki/Solving_chess) what `minimax(state)` in the above returns, because it takes too long!
+
+The reason for this is that the minimax algorithm needs to traverse the entire [game tree](https://en.wikipedia.org/wiki/Game_tree).
+{{< figure library="true" src="images/game_tree.png" numbered="true" title="\"A (partial) game tree for the game of tic-tac-toe. The top node is the initial state, and MAX moves first, placing an X in an empty square. We show part of the tree, giving alternating moves by MIN (O) and MAX (X), until we eventually reach terminal states, which can be assigned utilities (or game outcomes/rewards) according to the rules of the game\" ~ Taken from: [Artificial Intelligence: A Modern Approach](http://aima.cs.berkeley.edu/))" lightbox="true" >}}
 
 Just how long would we expect this to take for Go and Chess? Go [has around](https://en.wikipedia.org/wiki/Go_and_mathematics) $2\times 10^{170}$ legal board positions, whilst an upper-bound for chess board configurations [is around](https://www.chessprogramming.org/John_Tromp) $\sim 10^{46}$.[^shannon_number] And minimax needs to visit each of these states to compute the best opening move.[^alpha_beta] The highest clock speed of any CPU is 8.723 GHz for [an overclocked AMD CPU](https://en.wikipedia.org/wiki/Clock_rate). This means that it can (maximally) do $8.723 \times 10^{9}$ operations a second. Even if it could look at one board position per clock cycle (in practice it will be much lower), it would take $\sim 10^{144}$ *billion years* for Go and $\sim 10^{19}$ *billion years* for Chess for the computation to complete! For reference, the universe has only existed for around 14 billion years. If ever there is a hopeless computation, this is it!
 
@@ -165,9 +164,10 @@ The game is in some state $s$, and we want to know what next move to make. This 
 
 This was repeated 800 times in the original AlphaZero implementation, and then the visit counts for each child in `root_node.children` softmaxed, giving a new policy $\pmb{\pi}$ over actions. This new policy is generally better than using the neural net policy $\mathbf{p}$. MCTS can thus be viewed as a *policy improvement operator*, $\pmb{\pi}=\text{MCTS}(s, f_\theta)$
 
-There is one important detail missing: how to select actions in the **Selection** step. The key is that we want to balance *exploration* and *exploitation*: the `node.visit_count` tells us how often we've tried this action, and we want to choose actions that we haven't tried too often. But we also want to try the actions we know are best. We have a measure of 'goodness' from the policy and from the values of a nodes descendants. This could be interpreted as a [multi-armed bandit](https://en.wikipedia.org/wiki/Multi-armed_bandit) problem, for which we have provably optimal methods (eg. [Thompson Sampling](https://en.wikipedia.org/wiki/Thompson_sampling) or )
+There is one important detail missing: how to select actions in the **Selection** step. The key is that we want to balance *exploration* and *exploitation*: the `node.visit_count` tells us how often we've tried this action, and we want to choose actions that we haven't tried too often. And we also want to try the actions we know are best, based on our policy-value function and the results of our search. This could be interpreted as a [multi-armed bandit](https://en.wikipedia.org/wiki/Multi-armed_bandit) problem, for which we have provably optimal methods (eg. [Thompson Sampling](https://en.wikipedia.org/wiki/Thompson_sampling) or the [Upper Confidence Bound algorithm](https://banditalgs.com/2016/09/18/the-upper-confidence-bound-algorithm/)). Indeed, AlphaZero uses a variation of the Upper Confidence Bound algorithm to select nodes.
 
 **Further Reading**:
+
 - There are some extra details in the AlphaZero-variant of MCTS, for example adding Dirichlet noise to the priors of the child nodes of the root node to [avoid certain pathologies](https://dselsam.github.io/posts/2018-06-06-issues-with-alpha-zero.html). 
 For the full details, see the `run_mcts` function in the official AlphaZero Python-based pseudocode (see *Data S1* on the [AlphaZero supplementary materials](https://science.sciencemag.org/content/362/6419/1140/tab-figures-data/) page for full details. Or [this gist](https://gist.github.com/sbodenstein/e4027feb52d1da5e90f23828d77774d1#file-alphazero_pseudocode-py-L215)). 
 - For a thorough discussion of MCTS in general, see [An Analysis of Monte Carlo Tree Search](https://aaai.org/ocs/index.php/AAAI/AAAI17/paper/view/14886), S. James *et al*., 2017.
