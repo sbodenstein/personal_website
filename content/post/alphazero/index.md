@@ -298,7 +298,7 @@ The *raw network* policy was around 2000 Elo weaker than the MCTS policy. But it
 
 ### Lessons for Machine Learning Software
 
-AlphaZero ought to be the poster child for those [agitating to move machine learning away from Python](https://julialang.org/blog/2017/12/mlpl/) due to Python performance issues. 
+AlphaZero ought to be the poster child for those [agitating to move machine learning away from Python](https://julialang.org/blog/2017/12/mlpl/) due to performance issues. 
 
 First, Pythons [Global Interpreter Lock (GIL)](https://wiki.python.org/moin/GlobalInterpreterLock) prevents multithreaded Python code running in parallel. Parallelism is critical for scaling AlphaZero. For example, the primary bottleneck is the hundreds or thousands of policy/value net evaluations needed by MCTS for every move. As is well known, accelerators such as TPUs and GPUs are often an order of magnitude more efficient when processing batched versus unbatched data. To implement MCTS efficiently, the original AlphaGo and AlphaZero implementations used multi-threaded asynchronous MCTS implementations that queue up positions that can be batch-evaluated efficiently on TPUs:
 
