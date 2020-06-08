@@ -62,7 +62,7 @@ print("Drawn games (%): ", 100 * res.count(0.0) / num_trials)
 So around $84.7\\%$ of games are drawn.
 ### Minimax
 
-Rather than taking a random move, what is the best move? And what game result $z$ would we get if both players took the best moves? A very simple simple algorithm exists that answers both of these questions: the [minimax algorithm](https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves). First, the expected game result for a given state is called the **value** $v$. The idea of the minimax algorithm is to always choose an action that minimizes the maximum value the other player can obtain. We can implement this as a recursive algorithm in a few lines of Python:
+Rather than taking a random move, what is the best move? And what game result $z$ would we get if both players took the best moves? A very simple algorithm exists that answers both of these questions: the [minimax algorithm](https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves). First, the expected game result for a given state is called the **value** $v$. The idea of the minimax algorithm is to always choose an action that minimizes the maximum value the other player can obtain. We can implement this as a recursive algorithm in a few lines of Python:
 ```python
 def minimax(state, max_player_id = None):
     if max_player_id == None:
