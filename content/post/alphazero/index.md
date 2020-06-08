@@ -214,7 +214,7 @@ Note that transitivity is also essential for the popular [Elo rating system](htt
 
 > A player whose rating is 100 points greater than their opponent's is expected to score 64%; if the difference is 200 points, then the expected score for the stronger player is 76%.
 
-Yet transitivity is not enough: if the agent only learns a single opening sequence, and its opponent (ie. itself) also only plays this, then it might completely fail when another opponent challenges it with a completely different opening. Indeed, there are books like ["Winning in the Chess Opening: 700 Ways to Ambush Your Opponent"](https://www.amazon.com/dp/B07C4MLCVZ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1) that give weaker players all sorts of dirty tricks and traps to take down a generally stronger opponent.
+Yet transitivity is not enough: if the agent only learns a single opening sequence, and its opponent (ie. itself) does the same, it might completely fail when an unseen opponent challenges it with a completely different opening strategy. Indeed, there are books like ["Winning in the Chess Opening: 700 Ways to Ambush Your Opponent"](https://www.amazon.com/dp/B07C4MLCVZ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1) that give weaker players all sorts of dirty tricks and traps to take down a generally stronger opponent.
 
 The solution that AlphaZero takes is to inject noise at all levels of the algorithm to ensure move diversity during training: MCTS is already a noisy search that balances exploration/exploitation, but AlphaZero also adds Dirichlet noise to MCTS, and samples from the MCTS policy for the first 30 moves rather than always taking the most probable move.
 
