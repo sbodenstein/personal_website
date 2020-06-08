@@ -244,8 +244,7 @@ After the success of AlphaGo, DeepMind has gradually managed to generalize Alpha
 
 DeepMind also has a number of other algorithms under its *Alpha* brand that don't directly extend the core ideas of AlphaGo, such as [AlphaStar](https://deepmind.com/blog/article/alphastar-mastering-real-time-strategy-game-starcraft-ii) for playing StarCraft, and [AlphaFold](https://www.nature.com/articles/s41586-019-1923-7) for protein structure prediction.
 
-It is useful to know some of the limitations and restrictions that remain after MuZero, both when considering whether this set of methods can be applied to some problem (AlphaZero has already been applied to problems in [quantum computing](https://www.nature.com/articles/s41534-019-0241-0) and [chemical synthesis](https://www.nature.com/articles/nature25978)), and to give inspiration for future research. Here are some:
-
+It is useful to know some of the limitations and restrictions that remain after MuZero, both when considering whether this set of methods can be applied to some problem (AlphaZero has already been applied to problems in [quantum computing](https://www.nature.com/articles/s41534-019-0241-0) and [chemical synthesis](https://www.nature.com/articles/nature25978)), and to give inspiration for future research. Here are some limitations:
 
 1. **Perfect Information**. Almost every real-world environment is *partially-observed*.
 
@@ -271,14 +270,14 @@ optimization with regret bounds](http://people.csail.mit.edu/beomjoon/publicatio
 
 Some prominent researchers, such as Yoshua Bengio, [believe that one of the key problems with current deep learning methods](https://www.youtube.com/watch?v=UX8OubxsY8w&feature=emb_logo) is that they are stuck at being **System 1** processes: neural nets take one glance at some input, and immediately return a reaction. They typically can't make use of more computation to *reason* and *plan*, which Bengio believes to be the key to solving one of the greatest limitations of current systems: out-of-distribution generalization.
 
-It is notable that AlphaZero derives its success from using both **System 1** (neural net) and **System 2** (MCTS) processes, and it uses this interplay in two very different ways. And this interplay is very similar to human cognition. First, as a way of learning:
+It is notable that AlphaZero derives its success from using both **System 1** (neural net) and **System 2** (MCTS) processes, and it leverages this interplay in two very different ways. And this interplay is very similar to human cognition. First, as a way of learning:
 
 > When learning to complete a challenging planning task, such as playing a board game, humans exploit both processes: strong intuitions allow for more effective analytic reasoning by rapidly selecting interesting lines of play for consideration. Repeated deep study gradually improves intuitions. Stronger intuitions feedback to stronger analysis, creating a closed learning loop. In other words, humans learn by *thinking fast and slow*. ~ T. Anthony *et al*, [Thinking Fast and Slow
 with Deep Learning and Tree Search](https://arxiv.org/pdf/1705.08439.pdf), **2017**
 
-Second, after learning has been done, **System 2** can be used to improve on **System 1** intuitions by planning. An interesting question is: how important are both of these systems for humans and AlphaZero for games like Go and Chess?
+Second, after learning has been done, **System 2** can be used to improve on **System 1** intuitions by searching and planning. An interesting question is: how important are both of these systems for humans and AlphaZero for games like Go and Chess?
 
-It turns out that **System 1** is by far the most important process for humans. Two Nobel Prize winning economists (F. Gobet and H. Simon, [The Roles of Recognition Processes and Look-Ahead Search in Time-Constrained Expert Problem Solving: Evidence From Grand-Master-Level Chess](https://journals.sagepub.com/doi/10.1111/j.1467-9280.1996.tb00666.x), 1996) studied what happened to the playing strength of the then World Chess Champion Gary Kasparov when his time per move was severely restricted. He was given only 30 seconds per move, rather than the 5 minutes he would get in usual tournament time, and had to play many opponents simultaneously so that he couldn't 'cheat' by thinking whilst waiting for his turn:
+It turns out that **System 1** is by far the most important of the two processes for humans. Two Nobel Prize winning economists [studied what happened](https://journals.sagepub.com/doi/10.1111/j.1467-9280.1996.tb00666.x) to the playing strength of the then World Chess Champion Gary Kasparov when his time per move was severely restricted. He was given only 30 seconds per move, rather than the 5 minutes he would get in usual tournament time, and had to play many opponents simultaneously so that he couldn't 'cheat' by thinking whilst waiting for his turn:
 
 > Data from chess experiments show that a chess master might examine 100 branches of the game tree in 15 minutes, an average rate of about $9s$ per branch. De Groot (1946/1978) found that stronger and weaker players examine nearly the same number of branches, but that stronger players select more relevant and important branches... The simultaneous player with only $30s$, say, for a move will have little time for extensive look-ahead search at $9s$ per branch, and will have to depend primarily on recognition of cues to select the right moves.
 
