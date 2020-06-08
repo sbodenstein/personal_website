@@ -1,0 +1,39 @@
+# Theme metadata
+name = "seb_custom"
+
+# Is theme light or dark?
+light = false
+
+# Primary
+primary = "#328cc1"
+# primary = "hsl(339, 90%, 68%)"
+primary_light = "#328cc1"
+primary_dark = "#DA2536"
+
+# Menu
+# menu_primary = "rgb(20, 22, 34)"
+menu_primary = "#494949"
+# menu_text = "rgba(255,255,255,0.6)"
+menu_text = "#fff"
+menu_text_active = "rgba(255,255,255,1)"
+menu_title = "#fff"
+
+# Home sections
+home_section_odd = "hsla(231, 15%, 18%, 1)"
+home_section_even = "hsla(231, 15%, 16%, 1)"
+
+# # Primary
+# primary = "#328cc1"
+# primary_light = "#328cc1"
+# primary_dark = "#DA2536"
+
+# # Menu
+# menu_primary = "#494949"
+# menu_text = "#fff"
+# menu_text_active = "#328cc1"
+# menu_title = "#fff"
+
+# # Backgrounds
+# background = "#fff"
+# home_section_odd = "#fff"
+# home_section_even = "#f7f7f7"
