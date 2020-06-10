@@ -2,16 +2,13 @@
 name = "seb_custom"
 
 # Is theme light or dark?
-light = true
+light = false
 
 # Primary
 primary = "#328cc1"
 # primary = "hsl(339, 90%, 68%)"
-# primary_light = "#328cc1"
-# primary_dark = "#DA2536"
-
-primary_light = "#DA2536"
-primary_dark = "#328cc1"
+primary_light = "#328cc1"
+primary_dark = "#DA2536"
 
 # Menu
 # menu_primary = "rgb(20, 22, 34)"
