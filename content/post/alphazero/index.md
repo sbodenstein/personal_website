@@ -141,7 +141,7 @@ Having a value $v$ allows us to reduce the *depth* of the tree by replacing the 
 
 {{< figure library="true" src="images/value_mcts.png" numbered="true" title="The game tree for 5 actions, with the estimated value $v$ used instead of the actual game result. (Image source: [D. Silver, 2020](https://youtu.be/x5Q79XCxMVc))" lightbox="true" >}}
 
-MCTS is the best-known approach to exploring games trees by limiting their depth and breadth using a policy and value function. First, consider a node in the game tree:
+MCTS is the best-known approach to exploring game trees by limiting their depth and breadth using a policy and value function. First, consider a node in the game tree:
 
 ```python
 class Node(object):
@@ -194,9 +194,9 @@ A separate work came up with this idea independently, which they called [Expert 
 
 {{< figure library="true" src="images/expert.png" numbered="true" title="Adapted from T. Anthony et al, [Thinking Fast and Slow with Deep Learning and Tree Search](https://arxiv.org/abs/1705.08439), 2017" lightbox="true" >}}
 
-There is also nothing special with using Expert Iteration with the policy: we could do precisely the same with the value estimate, for which MCTS also gives us a better estimate. Using this MCTS improve value as a training signal for $v$ instead of $z$ was [tried successfully for AlphaZero](https://medium.com/oracledevs/lessons-from-alphazero-part-4-improving-the-training-target-6efba2e71628). 
+There is also nothing special with using Expert Iteration with the policy: we could do precisely the same with the value estimate, for which MCTS also gives us a better estimate. Using this MCTS value as a training signal for $v$ instead of $z$ was [tried successfully for AlphaZero](https://medium.com/oracledevs/lessons-from-alphazero-part-4-improving-the-training-target-6efba2e71628). 
 
-One final point about the power of having access to a model: we can easily generate other training signals based purely on *consistency* requirements of optimal value functions, like Q-learning does. For example, if the current states value is $v\_1$, and we take the minimax action using our model and value function, then the value of the state after the opponent has moved is $v\_2$. If our value function is optimal, then $v\_1=v\_2$. Demanding this consistency gives us another signal.
+One final point about the power of having access to a model: we can easily generate other training signals based purely on *consistency* requirements of optimal value functions, like Q-learning does. For example, if the current state value is $v\_1$, and we take the minimax action using our model and value function, then the value of the state after the opponent has moved is $v\_2$. If our value function is optimal, then $v\_1=v\_2$. Demanding this consistency gives us another signal.
 
 ### Idea 2: Self-Play
 
