@@ -75,4 +75,4 @@ email: ""
 
 Yet another theoretical physicist who jumped onto the machine learning bandwagon in 2013 post-AlexNet.
 
-Currently on a sabbatical after spending 5 years working on machine learning at [Wolfram Research](http://www.wolfram.com/).
+Currently working at DeepMind on protein folding.
